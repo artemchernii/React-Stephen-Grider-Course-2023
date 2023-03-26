@@ -1,16 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
-const root = document.querySelector('#root');
-
-const reactRoot = ReactDOM.createRoot(root);
+import Button from './components/Button';
 
 function App() {
+    const clickHandler = (e) => {
+        console.log(e);
+        console.log('click handler');
+    };
     return (
         <>
             <h1>Hello JSX</h1>
+            <Button text={'New Button'} onClickHandler={clickHandler}></Button>
         </>
     );
 }
-
-reactRoot.render(<App />);
+const root = ReactDOM.createRoot(document.querySelector('#root'));
+root.render(<App />);
