@@ -1,35 +1,21 @@
 import { useState } from 'react';
-import Button from './components/Button';
+import Button from './components/ui/Button';
+import ProfileCard from './components/entities/ProfileCard';
 
 function App() {
-    const clickHandler = (e) => {
-        console.log(e, 'click handler');
-    };
-    const [inputValue, setInputValue] = useState('');
-    const onChangeHandler = (event) => {
-        console.log(event.target.value);
-        setInputValue(event.target.value);
-    };
-    const inputType = 'number';
-    const maxValue = 5;
+    const cards = [
+        { title: 'Alexa', handle: '@alexa99' },
+        { title: 'Cordana', handle: '@cortana32' },
+        { title: 'Siri', handle: '@siri01' },
+    ];
     return (
         <>
-            <input
-                type="text"
-                placeholder="Type something here"
-                onChange={onChangeHandler}
-                value={inputValue}
-            />
-            <input type="text" />
-            <input
-                type={inputType}
-                max={maxValue}
-                spellCheck
-                list={[1, 2, 3]}
-                style={{ color: 'tomato', border: '2vmin solid red' }}
-            />
-            <h1>{inputValue}</h1>
-            <Button text={'New Button'} onClickHandler={clickHandler}></Button>
+            <div>Personal Digital Assistance</div>
+
+            <hr />
+            <ProfileCard title={cards[0].title} handle={cards[0].handle} />
+            <ProfileCard title={cards[1].title} handle={cards[1].handle} />
+            <ProfileCard title={cards[2].title} handle={cards[2].handle} />
         </>
     );
 }
