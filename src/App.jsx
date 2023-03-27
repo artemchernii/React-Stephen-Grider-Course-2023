@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Button from './components/Button';
 
-export default function App() {
+function App() {
     const clickHandler = (e) => {
         console.log(e, 'click handler');
     };
@@ -33,3 +33,5 @@ export default function App() {
         </>
     );
 }
+
+export { App };
