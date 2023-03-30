@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    max-width: 1199px;
+    margin: 0 auto;
+}
+button {
+    background-color: lightgreen;
+    border: 1px solid green;
+    border-radius: 10px;
+    font-size: 20px;
+    width: 30%;
+    padding: 20px 0;
+    margin-bottom: 10px;
+}
+.animal-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
