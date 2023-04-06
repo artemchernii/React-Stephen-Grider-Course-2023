@@ -1,11 +1,11 @@
 {
   "books": [
     {
-      "title": "Harry Potter 2",
+      "title": "Harry Potter",
       "id": 2
     },
     {
-      "title": "How to make a million",
+      "title": "How to make a million 2",
       "id": 4
     },
     {
@@ -13,8 +13,12 @@
       "id": 5
     },
     {
-      "title": "Dude loves Korea",
-      "id": 6
+      "title": "Love of Artem",
+      "id": 7
+    },
+    {
+      "title": "New Book",
+      "id": 8
     }
   ]
 }
