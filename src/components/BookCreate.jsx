@@ -14,7 +14,7 @@ export default function BookCreate({ onCreateBook }) {
             <h3 className="h3">Add a book</h3>
             <form onSubmit={handleSubmit}>
                 <label className="label" htmlFor="title">
-                    Title name:{' '}
+                    Title name:
                 </label>
                 <input
                     className="input"

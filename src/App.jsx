@@ -1,45 +1,56 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BookCreate from './components/BookCreate';
 import BookList from './components/BookList';
 import './index.css';
+import axios from 'axios';
 
 export default function App() {
-    const [books, setBooks] = useState([]);
-    const createBook = (title) => {
-        const newBook = {
-            id: Math.floor(Math.random() * 9999),
-            title,
-        };
-        setBooks([...books, newBook]);
-    };
-    const deleteBookById = (id) => {
-        const updatedBooks = books.filter((book) => book.id !== id);
-        setBooks(updatedBooks);
-    };
-    const editBookById = (id, newTitle) => {
-        console.log('edit this: ', id);
-        const updatedBooks = books.map((book) => {
-            if (book.id === id) {
-                return {
-                    ...book,
-                    title: newTitle,
-                };
-            }
-            return book;
-        });
+	const [books, setBooks] = useState([]);
 
-        setBooks([...updatedBooks]);
-    };
-    console.log(books);
-    return (
-        <div>
-            <h1 className="title is-1">Reading List</h1>
-            <BookCreate onCreateBook={createBook} />
-            <BookList
-                books={books}
-                onDeleteBook={deleteBookById}
-                onEditBook={editBookById}
-            />
-        </div>
-    );
+	const fetchBooks = async () => {
+		const response = await axios.get('http://localhost:3001/books');
+		setBooks(response.data);
+	};
+
+	useEffect(() => {
+		fetchBooks();
+	}, []);
+
+	const createBook = async (title) => {
+		const response = await axios.post('http://localhost:3001/books', {
+			title,
+		});
+		const updatedBooks = [...books, response.data];
+		setBooks(updatedBooks);
+	};
+	const deleteBookById = async (id) => {
+		await axios.delete(`http://localhost:3001/books/${id}`);
+		const updatedBooks = books.filter((book) => book.id !== id);
+		setBooks(updatedBooks);
+	};
+	const editBookById = async (id, newTitle) => {
+		const response = await axios.put(`http://localhost:3001/books/${id}`, {
+			title: newTitle,
+		});
+
+		const updatedBooks = books.map((book) => {
+			if (book.id === id) {
+				return { ...book, ...response.data };
+			}
+			return book;
+		});
+
+		setBooks([...updatedBooks]);
+	};
+	return (
+		<div>
+			<h1 className="title is-1">Reading List</h1>
+			<BookCreate onCreateBook={createBook} />
+			<BookList
+				books={books}
+				onDeleteBook={deleteBookById}
+				onEditBook={editBookById}
+			/>
+		</div>
+	);
 }
