@@ -5,11 +5,13 @@ import './index.css';
 import BooksContext from './context/books';
 
 export default function App() {
-	const { fetchBooks } = useContext(BooksContext);
+	const { stableFetchBooks } = useContext(BooksContext);
 
 	useEffect(() => {
-		fetchBooks();
-	}, []);
+		stableFetchBooks();
+
+		return () => console.log('clean up');
+	}, [stableFetchBooks]);
 
 	return (
 		<div>
